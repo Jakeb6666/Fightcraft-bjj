@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Photos from the Fightcraft BJJ community in Mansfield Woodhouse.">
+<title>Fightcraft BJJ | Photo Gallery</title>
+<style>
+:root{--bg:#101511;--panel:#171f19;--lime:#c6f36b;--text:#f3f5ef;--muted:#aab4aa;--line:rgba(198,243,107,.18)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif;line-height:1.6}a{color:inherit}.wrap{width:min(1160px,calc(100% - 40px));margin:auto}
+header{border-bottom:1px solid var(--line);background:#111812}nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{text-decoration:none;font-weight:900;letter-spacing:2px}.brand small{display:block;color:var(--lime);font-size:10px;letter-spacing:3px}.back{color:var(--lime);text-decoration:none;font-weight:bold}.hero{padding:70px 0 34px}.eyebrow{color:var(--lime);font-size:.78rem;font-weight:bold;letter-spacing:3px;text-transform:uppercase}h1{font-size:clamp(2.4rem,7vw,4.7rem);line-height:1.02;margin:12px 0}p{color:var(--muted)}.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:26px 0 24px}.filter{background:var(--panel);border:1px solid var(--line);color:var(--text);padding:10px 15px;border-radius:999px;cursor:pointer}.filter.active,.more{background:var(--lime);color:#121810;border-color:var(--lime);font-weight:bold}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.photo{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden}.photo img{display:block;width:100%;height:260px;object-fit:cover}.meta{padding:14px 16px}.meta h2{font-size:1rem;margin:0}.meta p{margin:5px 0 0;color:var(--lime);font-size:.82rem}.empty{grid-column:1/-1;padding:30px;background:var(--panel);border-radius:14px}.actions{text-align:center;padding:30px 0 70px}.more{border:0;border-radius:999px;padding:13px 24px;cursor:pointer;font-size:1rem}.more:disabled{opacity:.45;cursor:default}.count{font-size:.85rem;margin:0 0 15px}@media(max-width:800px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.photo img{height:220px}}@media(max-width:540px){.grid{grid-template-columns:1fr}.photo img{height:250px}.hero{padding-top:48px}}
+</style>
+</head><body>
+<header><div class="wrap"><nav><a class="brand" href="index.html">FIGHTCRAFT<small>BJJ · MANSFIELD</small></a><a class="back" href="index.html">← Back to homepage</a></nav></div></header>
+<main class="wrap"><section class="hero"><span class="eyebrow">The people behind the progress</span><h1>Fightcraft<br>photo gallery.</h1><p>Training sessions, team spirit, competitions and memories from our academy.</p></section>
+<div class="toolbar" id="filters" aria-label="Filter photos"><button class="filter active" data-category="All">All photos</button></div>
+<div class="grid" id="gallery-grid" aria-live="polite"><div class="empty">Loading Fightcraft photos…</div></div>
+<div class="actions"><p class="count" id="count"></p><button class="more" id="load-more" hidden>Load more photos</button></div></main>
+<script src="config.js"></script><script>
+(async function(){
+ const grid=document.getElementById('gallery-grid'),filters=document.getElementById('filters'),more=document.getElementById('load-more'),count=document.getElementById('count');
+ const PAGE_SIZE=12;let all=[],category='All',shown=0;
+ function render(){const list=category==='All'?all:all.filter(p=>(p.category||'Training')===category);const visible=list.slice(0,shown);grid.innerHTML='';
+  if(!list.length){grid.innerHTML='<div class="empty">No photos in this category yet.</div>';}else visible.forEach(p=>{const card=document.createElement('article');card.className='photo';const img=document.createElement('img');img.src=p.image_url;img.alt=p.caption||'Fightcraft BJJ community';img.loading='lazy';const meta=document.createElement('div');meta.className='meta';const h=document.createElement('h2');h.textContent=p.caption||'Fightcraft community';const cat=document.createElement('p');cat.textContent=p.category||'Training';meta.append(h,cat);card.append(img,meta);grid.append(card);});
+  count.textContent=list.length?`Showing ${visible.length} of ${list.length} photos`:' ';more.hidden=visible.length>=list.length;more.disabled=visible.length>=list.length;
+ }
+ function setCategory(next){category=next;shown=PAGE_SIZE;filters.querySelectorAll('button').forEach(b=>b.classList.toggle('active',b.dataset.category===next));render();}
+ try{if(!window.FIGHTCRAFT_SUPABASE_URL||!window.FIGHTCRAFT_SUPABASE_ANON_KEY)throw new Error('Gallery configuration missing');
+  const res=await fetch(window.FIGHTCRAFT_SUPABASE_URL+'/rest/v1/photos?select=id,image_url,caption,category,created_at&order=created_at.desc',{headers:{apikey:window.FIGHTCRAFT_SUPABASE_ANON_KEY,Authorization:'Bearer '+window.FIGHTCRAFT_SUPABASE_ANON_KEY}});if(!res.ok)throw new Error('Could not load photos');all=await res.json();
+  const cats=[...new Set(all.map(p=>p.category||'Training'))].sort();cats.forEach(c=>{const b=document.createElement('button');b.className='filter';b.dataset.category=c;b.textContent=c;b.addEventListener('click',()=>setCategory(c));filters.append(b);});
+  shown=PAGE_SIZE;render();if(!all.length)grid.innerHTML='<div class="empty">No photos have been published yet. Please check back soon.</div>';
+ }catch(e){grid.innerHTML='<div class="empty">The photo gallery is temporarily unavailable. Please refresh and try again.</div>';}
+ more.addEventListener('click',()=>{shown+=PAGE_SIZE;render();});filters.querySelector('[data-category="All"]').addEventListener('click',()=>setCategory('All'));
+})();
+</script></body></html>

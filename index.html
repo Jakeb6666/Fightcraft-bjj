@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Fightcraft BJJ, Mansfield Woodhouse, Nottinghamshire. Brazilian Jiu-Jitsu for adults and children, with Muay Thai and MMA training.">
+  <meta name="theme-color" content="#101312">
+  <title>Fightcraft BJJ | Mansfield Woodhouse, Nottinghamshire</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #101312;
+      --panel: #171c19;
+      --panel-light: #202722;
+      --text: #f4f6f2;
+      --muted: #aab4ac;
+      --accent: #c6f36b;
+      --accent-dark: #a8d64d;
+      --line: rgba(255,255,255,.12);
+      --max: 1180px;
+      --radius: 18px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body { margin: 0; background: var(--bg); color: var(--text); font-family: Inter, sans-serif; line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .container { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
+    .eyebrow { color: var(--accent); font-size: .75rem; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; }
+    h1,h2,h3,.display { font-family: "Barlow Condensed", sans-serif; text-transform: uppercase; line-height: .98; margin: 0; letter-spacing: -.02em; }
+    h1 { font-size: clamp(3.6rem, 9vw, 7.5rem); max-width: 800px; }
+    h2 { font-size: clamp(2.7rem, 5vw, 4.7rem); }
+    h3 { font-size: 1.8rem; }
+    p { color: var(--muted); margin: 0; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 14px 21px; border-radius: 7px; font-weight: 800; font-size: .88rem; transition: transform .2s, background .2s; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: var(--accent); color: #101510; }
+    .btn-primary:hover { background: #d7ff85; }
+    .btn-outline { border: 1px solid rgba(255,255,255,.35); color: white; }
+    .btn-outline:hover { background: rgba(255,255,255,.08); }
+    .arrow { font-size: 1.15rem; }
+    /* Navigation */
+    .topbar { position: sticky; top: 0; z-index: 100; background: rgba(16,19,18,.9); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
+    nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 900; letter-spacing: .04em; }
+    .brand-mark { width: 39px; height: 39px; display: grid; place-items: center; background: var(--accent); color: #111; font-family: "Barlow Condensed"; font-weight: 900; font-size: 1.45rem; transform: skew(-7deg); }
+    .brand-name { font-family: "Barlow Condensed"; font-size: 1.35rem; line-height: 1; }
+    .brand-name small { display: block; font-family: Inter; font-size: .55rem; color: var(--muted); letter-spacing: .2em; margin-top: 4px; }
+    .nav-links { display: flex; align-items: center; gap: 27px; font-size: .83rem; font-weight: 700; color: #d5dbd6; }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-cta { margin-left: 4px; }
+    .menu-toggle { display: none; background: none; border: 1px solid var(--line); color: white; border-radius: 8px; padding: 9px 12px; font-size: 1.2rem; }
+    /* Fightcraft logo / wordmark area */
+    .logo-stage { min-height: 96px; display:flex; align-items:center; justify-content:center; padding:10px 20px 8px; text-align:center; background:linear-gradient(180deg, rgba(198,243,107,.035), transparent); border-bottom:1px solid rgba(198,243,107,.08); }
+    .logo-stage img[hidden] { display:none !important; }
+    .logo-stage img { display:block; max-width:min(360px,78vw); max-height:112px; width:auto; height:auto; object-fit:contain; }
+    .logo-wordmark { font-family:"Barlow Condensed",Impact,sans-serif; font-weight:900; font-size:clamp(2.2rem,6vw,4.1rem); line-height:.9; letter-spacing:.055em; color:#f4f6f2; text-transform:uppercase; text-shadow:0 5px 25px rgba(0,0,0,.35); }
+    .logo-wordmark span { color:var(--accent); }
+    .logo-wordmark small { display:block; margin-top:10px; font:800 .68rem/1 Inter,Arial,sans-serif; letter-spacing:.35em; color:#b9c2bb; }
+    @media(max-width:760px){.logo-stage{min-height:82px;padding:8px 16px 6px}.logo-stage img{max-height:82px}.logo-wordmark{font-size:2.65rem}}
+
+    /* Hero */
+    .hero { min-height: 620px; display: flex; align-items: flex-start; position: relative; overflow: hidden; isolation: isolate; }
+    .hero::before { content: ""; position: absolute; inset: 0; z-index: -2; background: url("https://images.unsplash.com/photo-1599058917212-d750089bc07e?auto=format&fit=crop&w=2000&q=85") center 42%/cover no-repeat; filter: grayscale(100%) brightness(.48); }
+    .hero::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(16,19,18,.98) 0%, rgba(16,19,18,.82) 42%, rgba(16,19,18,.18) 100%), linear-gradient(0deg, var(--bg) 0%, transparent 25%); }
+    .hero-content { padding: 12px 0 90px; }
+    .hero h1 { margin: 20px 0 26px; }
+    .hero h1 span { color: var(--accent); }
+    .hero-copy { max-width: 510px; font-size: 1.05rem; margin-bottom: 32px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .hero-note { margin-top: 48px; display: flex; align-items: center; gap: 14px; font-size: .78rem; color: #d4dbd5; }
+    .hero-note .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 5px rgba(198,243,107,.12); }
+    .hero-stamp { position: absolute; right: max(40px, calc((100vw - var(--max))/2)); bottom: 120px; border: 1px solid rgba(255,255,255,.35); padding: 20px 23px; transform: rotate(-5deg); font-family: "Barlow Condensed"; font-size: 1.3rem; line-height: 1.1; font-weight: 800; text-align: center; }
+    .hero-stamp span { color: var(--accent); display: block; font-size: .75rem; letter-spacing: .16em; }
+    /* Marquee */
+    .ticker { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); overflow: hidden; background: var(--accent); color: #111; }
+    .ticker-inner { display: flex; gap: 38px; justify-content: space-around; padding: 13px 20px; white-space: nowrap; font-family: "Barlow Condensed"; font-size: 1.2rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    .ticker b { font-size: .85rem; }
+    /* Sections */
+    section { padding: 78px 0; }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 34px; }
+    .section-head > div { max-width: 690px; }
+    .section-head .eyebrow { margin-bottom: 16px; display: block; }
+    .section-head p { max-width: 390px; }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; }
+    .about-image { min-height: 470px; border-radius: var(--radius); overflow: hidden; position: relative; background: #252b26; }
+    .about-image img { width: 100%; height: 100%; min-height: 470px; object-fit: cover; filter: grayscale(100%) contrast(1.08); }
+    .image-label { position: absolute; bottom: 18px; left: 18px; background: var(--accent); color: #111; padding: 10px 14px; font-size: .75rem; font-weight: 900; letter-spacing: .08em; }
+    .about-copy h2 { margin: 17px 0 24px; }
+    .about-copy p + p { margin-top: 16px; }
+    .feature-list { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 30px 0; }
+    .feature { border-top: 1px solid var(--line); padding-top: 14px; }
+    .feature strong { display: block; color: white; font-size: .9rem; }
+    .feature span { font-size: .8rem; color: var(--muted); }
+    /* classes */
+    .classes { background: #151a17; }
+    .class-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .class-card { background: var(--panel); border: 1px solid var(--line); padding: 28px; border-radius: 14px; min-height: 245px; transition: transform .25s, border-color .25s; }
+    .class-card:hover { transform: translateY(-5px); border-color: rgba(198,243,107,.55); }
+    .class-number { color: var(--accent); font-family: "Barlow Condensed"; font-size: 1.1rem; font-weight: 800; }
+    .class-card h3 { margin: 28px 0 12px; }
+    .class-card p { font-size: .9rem; }
+    .class-card .card-link { display: inline-block; margin-top: 24px; color: var(--accent); font-size: .8rem; font-weight: 800; }
+    /* owner-managed timetable and opening information */
+    .managed-info { background: #111713; }
+    .managed-grid { display:grid; grid-template-columns:1fr 1fr; gap:22px; }
+    .managed-card { background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:26px; }
+    .managed-card h3 { margin-bottom:16px; }
+    .hours-list,.timetable-list { display:grid; gap:0; }
+    .hours-row,.class-row { display:flex; justify-content:space-between; gap:16px; padding:12px 0; border-bottom:1px solid var(--line); }
+    .hours-row:last-child,.class-row:last-child { border-bottom:0; }
+    .hours-row strong,.class-row strong { color:var(--text); }
+    .hours-row span,.class-row span { color:var(--muted); text-align:right; }
+    .announcement-bar { display:none; background:var(--accent); color:#111; text-align:center; padding:12px 18px; font-weight:800; }
+    .announcement-bar.active { display:block; }
+    .managed-note { font-size:.85rem; margin-top:12px; }
+    /* beginner */
+    .beginner-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 70px; }
+    .beginner-intro h2 { margin: 17px 0 22px; }
+    .steps { border-top: 1px solid var(--line); }
+    .step { display: grid; grid-template-columns: 55px 1fr; gap: 20px; padding: 23px 0; border-bottom: 1px solid var(--line); }
+    .step-num { color: var(--accent); font-family: "Barlow Condensed"; font-size: 1.4rem; font-weight: 800; }
+    .step h3 { font-size: 1.4rem; margin-bottom: 7px; }
+    .step p { font-size: .9rem; }
+    /* CTA */
+    .cta-band { padding: 0 0 100px; }
+    .cta-box { border-radius: 20px; padding: 58px; background: var(--accent); color: #101510; display: flex; justify-content: space-between; align-items: center; gap: 30px; position: relative; overflow: hidden; }
+    .cta-box::after { content: "FC"; position: absolute; right: 10%; top: -60px; font: 900 17rem/1 "Barlow Condensed"; color: rgba(16,21,16,.06); }
+    .cta-box h2 { max-width: 620px; position: relative; z-index: 1; }
+    .cta-box p { color: #35402b; margin-top: 14px; max-width: 520px; }
+    .cta-box .btn { background: #111612; color: white; position: relative; z-index: 1; flex-shrink: 0; }
+    /* FAQ */
+    .faq-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 70px; }
+    .faq-list { border-top: 1px solid var(--line); }
+    .faq-item { border-bottom: 1px solid var(--line); }
+    .faq-question { width: 100%; background: none; color: white; border: 0; padding: 22px 0; text-align: left; display: flex; justify-content: space-between; gap: 20px; cursor: pointer; font: 700 1rem Inter; }
+    .faq-question span:last-child { color: var(--accent); font-size: 1.3rem; transition: transform .2s; }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height .3s ease; }
+    .faq-answer p { padding: 0 35px 22px 0; font-size: .9rem; }
+    .faq-item.open .faq-answer { max-height: 180px; }
+    .faq-item.open .faq-question span:last-child { transform: rotate(45deg); }
+    /* Location/footer */
+    .location { background: #151a17; }
+    .location-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .location-card { padding: 34px; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; }
+    .location-card h3 { margin: 15px 0; }
+    .location-card p { margin-bottom: 20px; }
+    .map-frame { width: 100%; height: 320px; border: 0; border-radius: 14px; filter: grayscale(100%) invert(90%) contrast(.85); }
+    footer { padding: 35px 0; border-top: 1px solid var(--line); }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 25px; flex-wrap: wrap; }
+    .footer-inner p { font-size: .75rem; }
+    .footer-links { display: flex; gap: 20px; font-size: .78rem; color: var(--muted); }
+    .footer-links a:hover { color: var(--accent); }
+    .disclaimer { margin-top: 15px; font-size: .7rem; color: #768078; }
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    @media (max-width: 850px) {
+      .nav-links { display: none; position: absolute; top: 76px; left: 0; right: 0; padding: 24px 20px; background: #121614; border-bottom: 1px solid var(--line); flex-direction: column; align-items: stretch; gap: 18px; }
+      .nav-links.active { display: flex; }
+      .nav-cta { margin: 0; }
+      .menu-toggle { display: block; }
+      .hero { min-height: 560px; }
+      .hero-stamp { display: none; }
+      .about-grid, .beginner-grid, .faq-grid { grid-template-columns: 1fr; gap: 40px; }
+      .about-image, .about-image img { min-height: 340px; }
+      .section-head { display: block; }
+      .section-head p { margin-top: 20px; }
+      .class-grid { grid-template-columns: 1fr 1fr; }
+      .cta-box { padding: 38px; display: block; }
+      .cta-box .btn { margin-top: 25px; }
+      .location-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 560px) {
+      .container { width: min(var(--max), calc(100% - 30px)); }
+      section { padding: 56px 0; }
+      .hero-content { padding: 8px 0 76px; }
+      .hero::after { background: linear-gradient(90deg, rgba(16,19,18,.92), rgba(16,19,18,.58)), linear-gradient(0deg, var(--bg), transparent 45%); }
+      .hero-copy { font-size: .95rem; }
+      .class-grid { grid-template-columns: 1fr; }
+      .feature-list { grid-template-columns: 1fr; }
+      .cta-band { padding-bottom: 70px; }
+      .cta-box { padding: 30px 24px; }
+      .ticker-inner { justify-content: center; flex-wrap: wrap; white-space: normal; gap: 8px 18px; padding: 12px 14px; font-size: 1.05rem; }
+      .ticker-inner span { white-space: nowrap; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+
+    /* Community gallery */
+    .photo-gallery { padding: 78px 0; background: #141a16; }
+    .photo-gallery .section-head { margin-bottom: 34px; }
+    .gallery-intro { max-width: 650px; margin-top: 18px; }
+    .gallery-grid { display: flex; gap: 16px; margin-top: 34px; overflow-x: auto; overflow-y: hidden; padding: 2px 2px 16px; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; -webkit-overflow-scrolling: touch; scrollbar-width: thin; scrollbar-color: #c6f36b #263029; }
+    .gallery-grid > * { flex: 0 0 clamp(250px, 31%, 340px); min-width: 0; scroll-snap-align: start; }
+    .gallery-grid::-webkit-scrollbar { height: 8px; }
+    .gallery-grid::-webkit-scrollbar-track { background: #263029; border-radius: 99px; }
+    .gallery-grid::-webkit-scrollbar-thumb { background: #c6f36b; border-radius: 99px; }
+    .gallery-tile { min-height: 210px; padding: 24px; border: 1px dashed rgba(198,243,107,.45); border-radius: 14px; background: linear-gradient(145deg, #202a23, #171d19); display: flex; flex-direction: column; justify-content: flex-end; }
+    .gallery-tile .tile-icon { font-size: 2rem; margin-bottom: auto; }
+    .gallery-tile h3 { margin-bottom: 8px; }
+    .gallery-note { margin-top: 20px; font-size: .85rem; }
+    @media (max-width: 760px) { .gallery-grid > * { flex-basis: 82%; } .gallery-tile { min-height: 170px; } .photo-gallery { padding: 56px 0; } }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container">
+      <nav aria-label="Main navigation">
+        <a class="brand" href="index.html" aria-label="Fightcraft BJJ home">
+          <span class="brand-mark">F</span>
+          <span class="brand-name">FIGHTCRAFT<small>BJJ · MANSFIELD</small></span>
+        </a>
+        <div class="nav-links" id="navLinks">
+          <a href="#about">The academy</a>
+          <a href="gallery.html">Our photos</a>
+          <a href="timetable.html">Timetable</a>
+          <a href="contact.html">Contact</a>
+          <a href="https://www.facebook.com/share/1CHgPZz75M/" target="_blank" rel="noopener">Facebook ↗</a>
+          <a class="btn btn-primary nav-cta" href="contact.html">Get in touch <span class="arrow">↗</span></a>
+        </div>
+        <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="announcement-bar" id="site-announcement"></div>
+    <section class="logo-stage" aria-label="Fightcraft BJJ logo">
+      <div id="fightcraft-logo-placeholder" class="logo-wordmark">FIGHTCRAFT <span>BJJ</span><small>MANSFIELD WOODHOUSE</small></div>
+      <img id="fightcraft-logo-image" alt="Fightcraft BJJ logo" hidden>
+    </section>
+    <section class="hero" id="home">
+      <div class="container hero-content">
+        <span class="eyebrow" id="cms-hero-eyebrow">Fightcraft BJJ · Mansfield Woodhouse, Nottinghamshire</span>
+        <h1 id="cms-hero-title">Brazilian Jiu-Jitsu.<br><span>Right here in Mansfield.</span></h1>
+        <p class="hero-copy" id="cms-hero-copy">Learn the art of Brazilian Jiu-Jitsu in a team built around skill, discipline and getting better together. Whether it’s your first class or your next chapter on the mats, there’s a place for you.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="contact.html">Start your journey <span class="arrow">↗</span></a>
+          <a class="btn btn-outline" href="#training">Explore training</a>
+        </div>
+        <div class="hero-note"><span class="dot"></span> <span id="cms-hero-note">Adults and kids · Beginners welcome · Mansfield Woodhouse</span></div>
+      </div>
+      <div class="hero-stamp">LEARN THE ART<span>BUILD THE CONFIDENCE</span></div>
+    </section>
+
+    <div class="ticker" aria-label="Fightcraft values">
+      <div class="ticker-inner">
+        <span>Technique <b>✳</b></span><span>Respect <b>✳</b></span><span>Consistency <b>✳</b></span><span>Community <b>✳</b></span><span>Progress <b>✳</b></span>
+      </div>
+    </div>
+
+    <section id="about">
+      <div class="container about-grid">
+        <div class="about-image reveal">
+          <img id="academy-photo" src="https://images.unsplash.com/photo-1615117972428-9e3c3f5b7b6d?auto=format&fit=crop&w=1200&q=85" alt="Brazilian Jiu-Jitsu athletes training on the mats" loading="lazy">
+          <div class="image-label">FIGHTCRAFT BJJ · MANSFIELD</div>
+        </div>
+        <div class="about-copy reveal">
+          <span class="eyebrow">More than a workout</span>
+          <h2 id="cms-about-title">Make the mats<br>your second home.</h2>
+          <p id="cms-about-text">Fightcraft BJJ is a Brazilian Jiu-Jitsu academy in Mansfield Woodhouse, led by black belt Professor Shane Mills. Training is about more than learning techniques: it’s about building confidence, staying curious and helping each other improve.</p>
+          <p>From your first time stepping onto the mats to developing your game, the focus is on learning, consistency and respect.</p>
+          <div class="feature-list">
+            <div class="feature"><strong>Learn at your pace</strong><span>Build skills one step at a time.</span></div>
+            <div class="feature"><strong>Train together</strong><span>Be part of a supportive team.</span></div>
+            <div class="feature"><strong>Grow confidence</strong><span>Progress on and off the mats.</span></div>
+            <div class="feature"><strong>All experience levels</strong><span>Start wherever you are.</span></div>
+          </div>
+          <a class="btn btn-outline" href="contact.html">Ask about joining <span class="arrow">↗</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="classes" id="training">
+      <div class="container">
+        <div class="section-head reveal">
+          <div><span class="eyebrow">Find your training</span><h2>Different paths.<br>One team.</h2></div>
+          <p id="cms-training-intro">Whether you’re looking to learn a new skill, get fitter or develop your martial arts, find out which sessions are right for you.</p>
+        </div>
+        <div class="class-grid">
+          <article class="class-card reveal">
+            <span class="class-number">01 / THE FOUNDATIONS</span>
+            <h3>Brazilian Jiu-Jitsu</h3>
+            <p>Technique, leverage, control and problem-solving. Learn the fundamentals and build your game step by step.</p>
+            <a class="card-link" href="contact.html">Ask about BJJ <span class="arrow">↗</span></a>
+          </article>
+          <article class="class-card reveal">
+            <span class="class-number">02 / THE NEXT GENERATION</span>
+            <h3>Kids’ Classes</h3>
+            <p>A chance for younger students to learn movement, discipline, respect and confidence in a martial arts environment.</p>
+            <a class="card-link" href="contact.html">Ask about kids’ classes <span class="arrow">↗</span></a>
+          </article>
+          <article class="class-card reveal">
+            <span class="class-number">03 / STRIKING & MMA</span>
+            <h3>Muay Thai & MMA</h3>
+            <p>Fightcraft also offers training in Muay Thai and mixed martial arts. Contact the academy to find the right session.</p>
+            <a class="card-link" href="contact.html">Explore other training <span class="arrow">↗</span></a>
+          </article>
+        </div>
+        <p style="font-size:.75rem;margin-top:18px;">Class availability, age groups and timetable can change. Please contact Fightcraft directly for the latest details.</p>
+      </div>
+    </section>
+
+
+    <section id="beginners">
+      <div class="container beginner-grid">
+        <div class="beginner-intro reveal">
+          <span class="eyebrow">First time on the mats?</span>
+          <h2>Everyone<br>starts somewhere.</h2>
+          <p>You don’t need to be fit, flexible or experienced to ask about your first class. The hardest part is often just walking through the door.</p>
+          <a class="btn btn-primary" style="margin-top:25px" href="contact.html">Ask your first-timer questions <span class="arrow">↗</span></a>
+        </div>
+        <div class="steps reveal">
+          <div class="step"><span class="step-num">01</span><div><h3>Get in touch</h3><p>Tell the team you’re new and ask which class is best to try first.</p></div></div>
+          <div class="step"><span class="step-num">02</span><div><h3>Check what to bring</h3><p>Ask whether you need a gi, or if you can train in comfortable sportswear for your first session.</p></div></div>
+          <div class="step"><span class="step-num">03</span><div><h3>Learn the basics</h3><p>Focus on listening, learning and enjoying the experience. Nobody expects you to know everything.</p></div></div>
+          <div class="step"><span class="step-num">04</span><div><h3>Keep showing up</h3><p>Small improvements add up. Take your time, train consistently and celebrate your progress.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="faq">
+      <div class="container faq-grid">
+        <div class="reveal">
+          <span class="eyebrow">Quick answers</span>
+          <h2 style="margin:17px 0 22px">Good questions.<br>Start here.</h2>
+          <p>Wondering if BJJ is for you? Here are a few things worth knowing before you get in touch.</p>
+        </div>
+        <div class="faq-list reveal">
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false"><span>Can complete beginners join?</span><span>+</span></button>
+            <div class="faq-answer"><p>Absolutely worth asking! Let the academy know you’re new so they can guide you toward the most suitable class and explain what to expect.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false"><span>Do I need to be fit first?</span><span>+</span></button>
+            <div class="faq-answer"><p>You don’t need to get in shape before starting. Begin at your own pace and let your fitness develop alongside your skills.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false"><span>Do I need a BJJ gi?</span><span>+</span></button>
+            <div class="faq-answer"><p>Ask Fightcraft what to wear for your first session. Requirements can differ between gi and no-gi classes, so check before buying kit.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false"><span>What are the class times and prices?</span><span>+</span></button>
+            <div class="faq-answer"><p>Timetables and fees can change. Contact the academy directly for the latest schedule, prices, trial options and membership details.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false"><span>Do I have to compete?</span><span>+</span></button>
+            <div class="faq-answer"><p>Competition isn’t the only reason to train BJJ. Ask the coaches about recreational training and the options available to you.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="photo-gallery" id="photos">
+      <div class="container">
+        <div class="section-head reveal">
+          <div><span class="eyebrow">More than a training team</span><h2>The Fightcraft<br>family.</h2></div>
+          <p>Training, team spirit and the moments that make our academy special.</p>
+        </div>
+        <p class="gallery-intro">A little look at life at Fightcraft. Browse the full collection of training sessions, team moments and achievements in our photo gallery.</p>
+        <div class="gallery-grid" id="live-gallery" aria-live="polite">
+          <article class="gallery-tile"><span class="tile-icon">🥋</span><h3>On the mats</h3><p>Training, learning and getting better together.</p></article>
+          <article class="gallery-tile"><span class="tile-icon">🤝</span><h3>Team spirit</h3><p>Good people, encouragement and a welcoming atmosphere.</p></article>
+          <article class="gallery-tile"><span class="tile-icon">🏆</span><h3>Big moments</h3><p>Progress, achievements and memories worth celebrating.</p></article>
+        </div>
+        <p class="gallery-note" id="gallery-status">Loading the latest Fightcraft photos…</p>
+        <a class="btn btn-primary" style="margin-top:22px" href="gallery.html">View all photos <span class="arrow">↗</span></a>
+      </div>
+    </section>
+
+    <section class="cta-band"><div class="container"><div class="cta-box reveal"><div><span class="eyebrow" style="color:#34402a">Your next chapter starts here</span><h2>Ready to step<br>onto the mats?</h2><p>Ask us about getting started, classes and membership.</p></div><a class="btn" href="contact.html">Contact the academy <span class="arrow">↗</span></a></div></div></section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <a class="brand" href="index.html"><span class="brand-mark">F</span><span class="brand-name">FIGHTCRAFT<small>BJJ · MANSFIELD</small></span></a>
+        <p>Train hard. Stay humble. Keep learning.</p>
+        <div class="footer-links"><a href="timetable.html">Timetable</a><a href="contact.html">Contact</a><a href="gallery.html">Our photos</a>
+          <a href="timetable.html">Timetable</a>
+          <a href="contact.html">Contact</a><a href="https://www.facebook.com/share/1CHgPZz75M/" target="_blank" rel="noopener">Facebook ↗</a></div>
+      </div>
+      <p class="disclaimer">Independent website concept created for Fightcraft BJJ. Confirm all class details, contact information and branding with the academy before publishing.</p>
+      <p class="disclaimer">© <span id="year"></span> Fightcraft BJJ website concept.</p>
+    </div>
+  </footer>
+
+  <script src="config.js"></script>
+  <script>
+    // Mobile navigation
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('active');
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      menuToggle.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
+      menuToggle.textContent = isOpen ? '✕' : '☰';
+    });
+
+    // Close the mobile menu after choosing a link
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.setAttribute('aria-label', 'Open navigation');
+        menuToggle.textContent = '☰';
+      });
+    });
+
+    // Accessible FAQ accordion
+    document.querySelectorAll('.faq-question').forEach(button => {
+      button.addEventListener('click', () => {
+        const item = button.closest('.faq-item');
+        const open = item.classList.toggle('open');
+        button.setAttribute('aria-expanded', String(open));
+      });
+    });
+
+    // Subtle scroll reveal; gracefully falls back if IntersectionObserver is unavailable
+    const revealItems = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      revealItems.forEach(item => observer.observe(item));
+    } else {
+      revealItems.forEach(item => item.classList.add('visible'));
+    }
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Homepage preview: only the six newest photos are shown here.
+    (async function loadFightcraftGalleryPreview() {
+      const grid = document.getElementById('live-gallery');
+      const status = document.getElementById('gallery-status');
+      if (!grid || !window.FIGHTCRAFT_SUPABASE_URL || !window.FIGHTCRAFT_SUPABASE_ANON_KEY) return;
+      try {
+        const response = await fetch(window.FIGHTCRAFT_SUPABASE_URL + '/rest/v1/photos?select=id,image_url,caption,category,created_at,is_featured&is_featured=eq.true&order=created_at.desc&limit=6', {
+          headers: { apikey: window.FIGHTCRAFT_SUPABASE_ANON_KEY, Authorization: 'Bearer ' + window.FIGHTCRAFT_SUPABASE_ANON_KEY }
+        });
+        if (!response.ok) throw new Error('Gallery could not be loaded');
+        const photos = await response.json();
+        if (!photos.length) { status.textContent = 'Our photo gallery is getting ready. Check back soon!'; return; }
+        grid.innerHTML = '';
+        photos.forEach(photo => {
+          const card = document.createElement('article');
+          card.className = 'gallery-photo visible';
+          card.style.cssText = 'overflow:hidden;border-radius:14px;background:#202a23;border:1px solid rgba(198,243,107,.18)';
+          const img = document.createElement('img'); img.src = photo.image_url; img.alt = photo.caption || 'Fightcraft BJJ community'; img.loading = 'lazy';
+          img.style.cssText = 'display:block;width:100%;height:240px;object-fit:cover';
+          card.style.flex = '0 0 clamp(250px, 31%, 340px)';
+          card.style.scrollSnapAlign = 'start';
+          const details = document.createElement('div'); details.style.cssText = 'padding:14px';
+          const heading = document.createElement('h3'); heading.textContent = photo.caption || 'Fightcraft community';
+          const category = document.createElement('p'); category.textContent = photo.category || 'Training'; category.style.cssText = 'margin-top:6px;color:#c6f36b;font-size:.85rem';
+          details.append(heading, category); card.append(img, details); grid.append(card);
+        });
+        status.textContent = 'Swipe or scroll sideways to explore your featured photos. View the full gallery for more.';
+      } catch (err) { status.textContent = 'Photos are temporarily unavailable. Please try the full gallery shortly.'; }
+    })();
+  </script>
+
+  <script>
+  (async function loadFightcraftSiteSettings(){
+    const cfg=window.FIGHTCRAFT_SUPABASE_URL&&window.FIGHTCRAFT_SUPABASE_ANON_KEY;
+    if(!cfg)return;
+    const headers={apikey:window.FIGHTCRAFT_SUPABASE_ANON_KEY,Authorization:'Bearer '+window.FIGHTCRAFT_SUPABASE_ANON_KEY};
+    try{
+      const res=await fetch(window.FIGHTCRAFT_SUPABASE_URL+'/rest/v1/site_settings?id=eq.main&select=content',{headers});
+      if(!res.ok)return;const rows=await res.json();if(!rows.length)return;const c=rows[0].content||{};
+      const set=(id,val)=>{const el=document.getElementById(id);if(el&&typeof val==='string'&&val.trim())el.textContent=val;};
+      set('cms-hero-eyebrow',c.heroEyebrow);set('cms-hero-copy',c.heroCopy);set('cms-hero-note',c.heroNote);set('cms-about-text',c.aboutText);set('cms-training-intro',c.trainingIntro);set('cms-contact-copy',c.contactText);set('cms-prices',c.prices);
+      if(c.heroTitle){const h=document.getElementById('cms-hero-title');h.textContent='';const parts=c.heroTitle.split(/\n/);parts.forEach((p,i)=>{if(i)h.append(document.createElement('br'));const span=document.createElement(i===parts.length-1?'span':'span');span.textContent=p;if(i===parts.length-1)span.style.color='var(--accent)';h.append(span);});}
+      if(c.aboutTitle){const h=document.getElementById('cms-about-title');h.textContent=c.aboutTitle;}
+      if(c.contactTitle){const h=document.getElementById('cms-contact-title');h.textContent=c.contactTitle;}
+      const addr=document.getElementById('cms-address');if(addr&&c.address)addr.textContent=c.address;
+      const academyPhoto=document.getElementById('academy-photo');if(academyPhoto&&c.academyPhoto)academyPhoto.src=c.academyPhoto;
+      const logoImage=document.getElementById('fightcraft-logo-image'),logoPlaceholder=document.getElementById('fightcraft-logo-placeholder');if(logoImage&&logoPlaceholder&&c.logoImage){logoImage.src=c.logoImage;logoImage.hidden=false;logoPlaceholder.hidden=true;}
+      const details=document.getElementById('cms-contact-details');if(details){const bits=[];if(c.phone)bits.push('Phone: '+c.phone);if(c.email)bits.push('Email: '+c.email);if(!bits.length)bits.push('Contact the academy for enquiries and current arrangements.');details.textContent=bits.join(' · ');}
+      if(c.accent)document.documentElement.style.setProperty('--accent',c.accent);if(c.background)document.documentElement.style.setProperty('--bg',c.background);if(c.panel)document.documentElement.style.setProperty('--panel',c.panel);
+      const ann=document.getElementById('site-announcement');if(ann&&c.announcementEnabled&&c.announcement){ann.textContent=c.announcement;ann.classList.add('active');}
+      const hours=document.getElementById('cms-opening-hours');if(hours&&Array.isArray(c.openingHours)&&c.openingHours.length){hours.innerHTML='';c.openingHours.forEach(item=>{const row=document.createElement('div');row.className='hours-row';const day=document.createElement('strong');day.textContent=item.day||'';const value=document.createElement('span');value.textContent=item.hours||'';row.append(day,value);hours.append(row);});}
+      const timetable=document.getElementById('cms-timetable');if(timetable&&Array.isArray(c.timetable)&&c.timetable.length){timetable.innerHTML='';c.timetable.forEach(item=>{const row=document.createElement('div');row.className='class-row';const left=document.createElement('strong');left.textContent=[item.day,item.time].filter(Boolean).join(' · ');const right=document.createElement('span');right.textContent=[item.name,item.coach].filter(Boolean).join(' · ');row.append(left,right);timetable.append(row);});}
+    }catch(e){console.info('Fightcraft website settings are using the built-in defaults.');}
+  })();
+  </script>
+
+</body>
+</html>
