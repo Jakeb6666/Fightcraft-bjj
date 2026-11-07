@@ -135,7 +135,7 @@ header{border-bottom:1px solid var(--line);background:#111812}nav{min-height:76p
 <div class="toolbar" id="filters" aria-label="Filter photos"><button class="filter active" data-category="All">All photos</button></div>
 <div class="grid" id="gallery-grid" aria-live="polite"><div class="empty">Loading Fightcraft photos…</div></div>
 <div class="actions"><p class="count" id="count"></p><button class="more" id="load-more" hidden>Load more photos</button></div></main>
-<script src="config.js"></script><script>
+<script src="config.js"></script><script src="theme.js"></script><script>
 (async function(){
  const grid=document.getElementById('gallery-grid'),filters=document.getElementById('filters'),more=document.getElementById('load-more'),count=document.getElementById('count');
  const PAGE_SIZE=12;let all=[],category='All',shown=0;
