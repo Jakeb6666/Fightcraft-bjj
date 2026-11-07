@@ -145,7 +145,7 @@ header{border-bottom:1px solid var(--line);background:#111812}nav{min-height:76p
  }
  function setCategory(next){category=next;shown=PAGE_SIZE;filters.querySelectorAll('button').forEach(b=>b.classList.toggle('active',b.dataset.category===next));render();}
  try{if(!window.FIGHTCRAFT_SUPABASE_URL||!window.FIGHTCRAFT_SUPABASE_ANON_KEY)throw new Error('Gallery configuration missing');
-  const res=await fetch(window.FIGHTCRAFT_SUPABASE_URL+'/rest/v1/photos?select=id,image_url,caption,category,created_at&order=created_at.desc',{headers:{apikey:window.FIGHTCRAFT_SUPABASE_ANON_KEY,Authorization:'Bearer '+window.FIGHTCRAFT_SUPABASE_ANON_KEY}});if(!res.ok)throw new Error('Could not load photos');all=await res.json();
+  const res=await fetch(window.FIGHTCRAFT_SUPABASE_URL+'/rest/v1/photos?select=id,image_url,caption,category,created_at&order=created_at.desc',{headers:{apikey:window.FIGHTCRAFT_SUPABASE_ANON_KEY,Authorization:'Bearer '+window.FIGHTCRAFT_SUPABASE_ANON_KEY},cache:'no-store'});if(!res.ok)throw new Error('Could not load photos');all=await res.json();
   const cats=[...new Set(all.map(p=>p.category||'Training'))].sort();cats.forEach(c=>{const b=document.createElement('button');b.className='filter';b.dataset.category=c;b.textContent=c;b.addEventListener('click',()=>setCategory(c));filters.append(b);});
   shown=PAGE_SIZE;render();if(!all.length)grid.innerHTML='<div class="empty">No photos have been published yet. Please check back soon.</div>';
  }catch(e){grid.innerHTML='<div class="empty">The photo gallery is temporarily unavailable. Please refresh and try again.</div>';}
