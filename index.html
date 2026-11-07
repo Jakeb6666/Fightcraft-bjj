@@ -530,7 +530,7 @@
     </div>
   </footer>
 
-  <script src="config.js"></script>
+  <script src="config.js"></script><script src="theme.js"></script>
   <script>
     // Mobile navigation
     const menuToggle = document.getElementById('menuToggle');
@@ -624,7 +624,7 @@
       set('cms-hero-eyebrow',c.heroEyebrow);set('cms-hero-copy',c.heroCopy);set('cms-hero-note',c.heroNote);set('cms-about-text',c.aboutText);set('cms-training-intro',c.trainingIntro);set('cms-contact-copy',c.contactText);set('cms-prices',c.prices);
       if(c.heroTitle){const h=document.getElementById('cms-hero-title');h.textContent='';const parts=c.heroTitle.split(/\n/);parts.forEach((p,i)=>{if(i)h.append(document.createElement('br'));const span=document.createElement(i===parts.length-1?'span':'span');span.textContent=p;if(i===parts.length-1)span.style.color='var(--accent)';h.append(span);});}
       if(c.aboutTitle){const h=document.getElementById('cms-about-title');h.textContent=c.aboutTitle;}
-      if(c.contactTitle){const h=document.getElementById('cms-contact-title');h.textContent=c.contactTitle;}
+     if(c.contactTitle){const h=document.getElementById('cms-contact-title');if(h)h.textContent=c.contactTitle;}
       const addr=document.getElementById('cms-address');if(addr&&c.address)addr.textContent=c.address;
       const academyPhoto=document.getElementById('academy-photo');if(academyPhoto&&c.academyPhoto)academyPhoto.src=c.academyPhoto;
       const logoImage=document.getElementById('fightcraft-logo-image'),logoPlaceholder=document.getElementById('fightcraft-logo-placeholder');if(logoImage&&logoPlaceholder&&c.logoImage){logoImage.src=c.logoImage;logoImage.hidden=false;logoPlaceholder.hidden=true;}
