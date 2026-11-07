@@ -587,7 +587,8 @@
       if (!grid || !window.FIGHTCRAFT_SUPABASE_URL || !window.FIGHTCRAFT_SUPABASE_ANON_KEY) return;
       try {
         const response = await fetch(window.FIGHTCRAFT_SUPABASE_URL + '/rest/v1/photos?select=id,image_url,caption,category,created_at,is_featured&is_featured=eq.true&order=created_at.desc&limit=6', {
-          headers: { apikey: window.FIGHTCRAFT_SUPABASE_ANON_KEY, Authorization: 'Bearer ' + window.FIGHTCRAFT_SUPABASE_ANON_KEY }
+          headers: { apikey: window.FIGHTCRAFT_SUPABASE_ANON_KEY, Authorization: 'Bearer ' + window.FIGHTCRAFT_SUPABASE_ANON_KEY },
+          cache: 'no-store'
         });
         if (!response.ok) throw new Error('Gallery could not be loaded');
         const photos = await response.json();
@@ -617,7 +618,7 @@
     if(!cfg)return;
     const headers={apikey:window.FIGHTCRAFT_SUPABASE_ANON_KEY,Authorization:'Bearer '+window.FIGHTCRAFT_SUPABASE_ANON_KEY};
     try{
-      const res=await fetch(window.FIGHTCRAFT_SUPABASE_URL+'/rest/v1/site_settings?id=eq.main&select=content',{headers});
+      const res=await fetch(window.FIGHTCRAFT_SUPABASE_URL+'/rest/v1/site_settings?id=eq.main&select=content',{headers,cache:'no-store'});
       if(!res.ok)return;const rows=await res.json();if(!rows.length)return;const c=rows[0].content||{};
       const set=(id,val)=>{const el=document.getElementById(id);if(el&&typeof val==='string'&&val.trim())el.textContent=val;};
       set('cms-hero-eyebrow',c.heroEyebrow);set('cms-hero-copy',c.heroCopy);set('cms-hero-note',c.heroNote);set('cms-about-text',c.aboutText);set('cms-training-intro',c.trainingIntro);set('cms-contact-copy',c.contactText);set('cms-prices',c.prices);
