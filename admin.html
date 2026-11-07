@@ -31,7 +31,13 @@
 (()=>{
 const $=id=>document.getElementById(id);const cfgOk=window.FIGHTCRAFT_SUPABASE_URL&&window.FIGHTCRAFT_SUPABASE_ANON_KEY&&window.supabase;
 if(!cfgOk){$('login-status').textContent='Supabase configuration could not be loaded. Check config.js.';$('login').disabled=true;return;}
-const client=window.supabase.createClient(window.FIGHTCRAFT_SUPABASE_URL,window.FIGHTCRAFT_SUPABASE_ANON_KEY),bucket='gallery';let settings=null;
+const noStoreFetch=(input,init={})=>fetch(input,{...init,cache:'no-store'});
+const client=window.supabase.createClient(
+  window.FIGHTCRAFT_SUPABASE_URL,
+  window.FIGHTCRAFT_SUPABASE_ANON_KEY,
+  {global:{fetch:noStoreFetch}}
+);
+const bucket='gallery';let settings=null;
 const defaults={heroEyebrow:'Fightcraft BJJ · Mansfield Woodhouse, Nottinghamshire',heroTitle:'Brazilian Jiu-Jitsu.\nRight here in Mansfield.',heroCopy:'Learn the art of Brazilian Jiu-Jitsu in a team built around skill, discipline and getting better together. Whether it’s your first class or your next chapter on the mats, there’s a place for you.',heroNote:'Adults and kids · Beginners welcome · Mansfield Woodhouse',aboutTitle:'Make the mats your second home.',aboutText:'Fightcraft BJJ is a Brazilian Jiu-Jitsu academy in Mansfield Woodhouse. Training is about more than learning techniques: it’s about building confidence, staying curious and helping each other improve.',trainingIntro:'Whether you’re looking to learn a new skill, get fitter or develop your martial arts, find out which sessions are right for you.',contactTitle:'Ready to step onto the mats?',contactText:'Reach out to Fightcraft BJJ to ask about classes, beginner sessions, age groups and the current timetable.',address:'Unit 8 & 9, Block 2, 3 Old Mill Lane, Mansfield Woodhouse, Mansfield, NG19 9GB',phone:'',email:'',prices:'Please contact the academy for current membership prices and trial options.',announcement:'',announcementEnabled:false,accent:'#c6f36b',background:'#101312',panel:'#171c19',openingHours:[['Monday','Please contact us'],['Tuesday','Please contact us'],['Wednesday','Please contact us'],['Thursday','Please contact us'],['Friday','Please contact us'],['Saturday','Please contact us'],['Sunday','Please contact us']].map(x=>({day:x[0],hours:x[1]})),timetable:[]};
 function status(id,msg){$(id).textContent=msg;}
 function show(user){$('login-panel').classList.toggle('hidden',!!user);$('dashboard').classList.toggle('hidden',!user);if(user)loadAll();}
